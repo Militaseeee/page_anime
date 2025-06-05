@@ -1,356 +1,224 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box; 
-}
-/* I block the scroll */
-*::-webkit-scrollbar {
-    display: none;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+:root {
+  --red: hsl(4, 100%, 67%);
+  --Blue-800: hsl(234, 29%, 20%);
+  --Blue-700: hsl(235, 18%, 26%);
+  --Grey: hsl(0, 0%,58%);
+  --White: hsl(0, 0%, 100%);
 }
 
 body {
-    position: relative;
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--Blue-800);
+  color: var(--Blue-700);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+  
+.card {
+  display: flex;
+  background-color: var(--White);
+  border-radius: 30px;
+  overflow: hidden;
+  max-width: 900px;
+  width: 90%;
+  padding: 1.5rem;
+  justify-content: center;
+}
+
+.position {
+  flex-direction: column;
+  flex-direction: row;
+  margin-right: 50px;
+  margin-left: 30px;
+  margin-top: 20px;
+}
+  
+.card h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+.img {
+  height: 15px;
+  width: 15px;
+}
+
+.card p {
+  font-size: 1.1rem;
+  font-weight: 400;
+  margin-bottom: 2rem;
+}
+
+.card ul {
+  list-style: none; /* We remove the default list styles */
+  padding-left: 0;
+  
+}
+  
+.card ul li {
+  display: flex;
+  align-items: center; /* Center vertically */
+  gap: 10px; /* Space between the icon and the text */
+  line-height: 30px;
+  color: var(--Blue-800);
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.card ul li::before {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 22px;
+  background-image: url("../assets/images/icon-list.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  flex-shrink: 0; /* Evita que el ícono se deforme */
+}
+
+figure {
+  display: flex;
+  justify-content: flex-start;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start:0;
+  margin-inline-end: 0;
+}
+
+h1 {
+  font-weight: 700;
+  font-size: 2rem;
+}
+.form_control{
+  border-radius: 5px;
+  border: 1px solid var(--Grey);
+  width: 40vh;
+  height: 5vh;
+  text-justify: center;
+  font-size: 18px;
+}
+.button_container{
+  width: 40.6vh;
+  height: 6vh;
+  border-radius: 10px;
+  background-color: var(--Blue-800);
+  color: var(--White);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3vh;
+  font-weight: bold;
+}
+#email-text{
+  margin-bottom: 10px;
+}
+
+
+@media (max-width: 600px) {
+  body {
+    padding: 10px;
+    align-items: stretch;
+    justify-content: flex-start;
+  }
+
+  .card {
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  .position {
+    margin: 15px;
+  }
+
+  figure {
     margin: 0;
     padding: 0;
-    font-family: "Sansation", sans-serif;
-    overflow-x: hidden;
-    }
+  }
 
-/* Background layer with opacity only on the image */
-.background_overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
+  figure img {
     width: 100%;
-    height: 100%;
-    background-image: url("../img/background_login.png");
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    filter: brightness(50%); /* Opacity */
-    z-index: -1;
-}
+    height: auto;
+    display: block;
+  }
 
-.navigator_bar {
-    background: linear-gradient(
-        to bottom,
-        rgba(71, 67, 67, 1) 92%,
-        rgba(71, 67, 67, 0.8) 97%,
-        rgba(71, 67, 67, 0.4) 100%,
-        rgba(71, 67, 67, 0) 100%
-    );
-    height: 90px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 100px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4); 
-}
-
-.img_logo img {
-    height: 20vh;
-}
-
-.img_logo a {
-    display: inline-block;
-}
-
-.list_navbar {
-    list-style: none;
-    display: flex;
-    gap: 40px;
-}
-
-.list_navbar li a {
-    color: white;
-    text-decoration: none;
-    font-size: 22px;
-    transition: color 0.3s;
-    font-weight: 300;
-    font-style: normal;
-    letter-spacing: 3px;
-}
-
-.list_navbar li a:hover {
-    color: #b19099;
-}
-
-.login_container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 40px;
-}
-
-/* Position Luffy in the top right corner of the card */
-.img_luffy {
-    position: absolute;
-    top: -115px;  
-    right: -60px;
-    width: 120px; 
-    z-index: 2;
-    pointer-events: none;
-}
-
-/* Luffy Shadows */
-.shadow_luffy {
-    position: absolute;
-    top: 0;
-    left: 0;
+  .form_control,
+  .button_container {
     width: 100%;
-    filter: blur(6px) brightness(0) opacity(20);
-    transform: translate(12px, 10px);
-    z-index: 1;
-}
+    box-sizing: border-box;
+  }
 
-/* main image */
-.principal_luffy {
-    position: relative;
-    width: 100%;
-    z-index: 2;
-}
+  .form_control {
+    height: 48px;
+  }
 
-.img_totoro {
-    position: absolute;
-    bottom: -32px; 
-    right: -110px;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    pointer-events: none;
-    width: 300px; /* to control overall size */
-    height: auto;
-}
-
-.shadow_totoro {
-    filter: blur(6px) brightness(0) opacity(20);
-    transform: translate(18px, 0px); /* move the shadow a little */
-    position: absolute; /* equal position so that it is behind */
-    top: 0;
-    left: 0;
-    z-index: 1;
-    width: 100%; /* that occupies the same size as the image */
-    height: auto;
-}
-
-.principal_totoro {
-    position: relative;
-    z-index: 2;
-    width: 100%; /* that occupies the entire .img_totoro container */
-    height: auto;
-}
-
-.card_login {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #605D5D;
-    padding: 40px;
-    width: 500px;
-    height: 470px;
-    margin: 0px auto;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 1);
-    position: relative;
-    z-index: 1; 
-}
-
-.card_login h1 {
-    margin-bottom: 20px;
-    font-size: 40px;
-    font-weight: 400;
-    color: white;
-    letter-spacing: 3px;
-    margin-bottom: 0px;
-}
-
-.form_group {
-    margin: 40px auto 20px auto;
-}
-
-.form_control { 
-    width: 350px;
-    padding: 8px 15px;
-    border: 1px solid black;;
-    border-radius: 8px;
-    font-size: 25px;
-    background-color: #d9d9d9;
-    color: #333;
-    font-family: "Sansation", sans-serif;
-    letter-spacing: 3px;
-}
-
-.checkbox {
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
-    color: white; 
+  .button_container {
+    height: 52px;
     font-size: 14px;
-    letter-spacing: 2px;
-    font-weight: 300;
-    font-style: normal;
+  }
 }
 
-.checkbox input[type="checkbox"] {
-    appearance: none;  /* removes the default browser style */
-    -webkit-appearance: none;
-    accent-color: black; 
-    width: 18px;
-    height: 18px;
-    border: 1px solid black; 
-    background-color: #d9d9d9;
-    border-radius: 4px;
-    margin-right: 4px;
-    vertical-align: sub;
-    cursor: pointer;
-    position: relative;
-}
+@media (max-width: 768px) {
+  body {
+    flex-direction: column;
+    height: auto;
+    padding: 20px;
+    align-items: stretch;
+  }
 
-.checkbox input[type="checkbox"]:checked::after {
-    content: "";
-    position: absolute;
-    top: 1px;
-    left: 5px;
-    width: 4px;
-    height: 9px;
-    border: solid black;
-    border-width: 0 2px 2px 0;
-    transform: rotate(45deg);
-}
+  .card {
+    flex-direction: column-reverse;
+    padding: 0;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 100%;
+  }
 
-.button_container {
-    text-align: center;
-    margin-top: 40px;   
-}
+  .position {
+    margin: 20px;
+  }
 
-.button_contact {
-    display: inline-block;
-    padding: 10px 50px;
-    background-color: #d9d9d9;
-    color: #605D5D;
-    text-decoration: none;
-    border-radius: 13px;
-    font-weight: 400;
-    font-size: 18px;
-    letter-spacing: 2px;
-    transition: background-color 0.3s ease; 
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
-}
+  figure {
+    width: 100%;
+  }
 
-.button_contact:hover {
-    background-color: #141414;
-    color: white;
-}
+  figure img {
+    width: 100%;
+    height: auto;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+  }
 
+  .form_control,
+  .button_container {
+    width: 100%;
+  }
 
+  .form_control {
+    height: 50px;
+    font-size: 16px;
+  }
 
-/* ====== MEDIA QUERIES ====== */
+  .button_container {
+    height: 55px;
+    font-size: 14px;
+  }
 
-/* Tablets (768px - 1024px) */
-@media (max-width: 1024px) {
-    .navigator_bar {
-        padding: 0 40px;
-    }
+  .card h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
 
-    .img_logo img {
-        height: 12vh;
-    }
-
-    .list_navbar li a {
-        font-size: 18px;
-        letter-spacing: 2px;
-    }
-
-    .login_container {
-        padding: 30px;
-    }
-
-    .card_login {
-        width: 400px;
-        height: auto;
-        padding: 30px;
-    }
-
-    .card_login h1 {
-        font-size: 32px;
-    }
-
-    .form_control {
-        width: 280px;
-        font-size: 20px;
-    }
-
-    .img_luffy {
-        top: -90px;
-        right: -40px;
-        width: 100px;
-    }
-
-    .img_totoro {
-        width: 220px;
-        bottom: -20px;
-        right: -80px;
-    }
-}
-
-/* Mobile devices (max-width: 767px) */
-@media (max-width: 767px) {
-    .navigator_bar {
-        padding: 0 20px;
-        gap: 10px;
-    }
-
-    .img_logo img {
-        height: 10vh;
-    }
-
-    .list_navbar {
-        gap: 20px;
-    }
-
-    .list_navbar li a {
-        font-size: 14px;
-        letter-spacing: 1px;
-    }
-
-    .login_container {
-        padding: 20px;
-        flex-direction: column;
-    }
-
-    .card_login {
-        width: 90vw;
-        max-width: 350px;
-        height: auto;
-        padding: 50px;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.9);
-    }
-
-    .card_login h1 {
-        font-size: 28px;
-        text-align: center;
-    }
-
-    .form_control {
-        width: 100%;
-        font-size: 18px;
-    }
-
-    .img_luffy {
-        position: absolute;
-        top: -75px;
-        right: -40px;
-        width: 80px;
-        margin-bottom: 15px;
-    }
-
-    .img_totoro {
-        position: absolute;
-        bottom: -18px;
-        right: -63px;
-        width: 200px;
-        margin-top: 10px;
-    }
+  .card p,
+  .card ul li {
+    font-size: 1rem;
+  }
 }
